@@ -1,4 +1,6 @@
 #Ai-chan Discord bot
+#Name ideas
+#Tinker,bolt,roberto,rust,core,Ava,Myrai,Echo,Enzo,
 
 import discord
 import os
@@ -36,7 +38,7 @@ async def on_member_unban(member):
 async def member_update(member):
   print(f'{member} has updated profile')
 
-#commands
+# Event commands
 
 @client.command()
 async def ping(ctx):
@@ -49,5 +51,13 @@ async def ping(ctx):
 async def hello(ctx):
   await ctx.send('hello')
  
+
+# Function commands
+
+def get_quote():
+  response = requests.get("https://zenquotes.io/api/random")
+  json_data = json.loads(response.text)
+  quote = json_data[0]['q'] + " -" + json_data[0]['a']
+  return(quote)
 
 client.run(os.environ['Discord_Token'])
